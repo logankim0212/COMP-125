@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <link rel = "stylesheet" type = "text/css" href = "assignment1.css">
+    <title>Assignment 1</title>
+    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+    <meta name = "author" content = "Logan Kim">
+    <meta name = "description" content = "COMP125 Assignment 1">
+    <meta name = "keywords" content = "COMP 125, Centennial College, HTML5, CSS3, JavaScript, Assignment 1">
+    <meta charset = "utf-8">
+</head>
+<body>
+    <head>
+        <h1>COMP125: Assignment1</h1>
+    </head>
+    <article>
+        <ul class="tabs" id="scrollTop">
+            <li id="tab1" class="active"><a href="#form1">Metric BMR Calculator</a></li>
+            <li id="tab2"><a href="#form2">Imperial BMR Calculator</a></li>
+        </ul>
+        <form method="post" name="bmr_calc1" id="bmrForm1" onsubmit="calculate_bmr('form1');return false">
+            <div id="form1" class="calculator_form bmr-calc">
+                <div class="single-field">
+                    <label for="gender">Gender:</label>
+                    <select name="gender" id="gender">
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                    </select>
+                </div>
+                <div class="single-field">
+                    <label for="bmrformula">BMR Equation:</label>
+                    <select name="bmrformula" id="bmrformula">
+                        <option value="mifflin">Mifflin - St Jeor (default)</option>
+                        <option value="harris">Harris-Benedict</option>
+                    </select>
+                </div>
+
+                     <div class="single-field">
+                     <label for="age">Age:</label>
+                     <input type="number" step="any" min="0" name="age" id="age" class="calculatorMedInput" required="">
+                     </div>
+
+                     <div class="single-field">
+                     <label for="height">Height <small>&nbsp;(e.g. 183)</small>:</label>
+                     <input type="number" step="any" min="0" name="height" id="height" class="calculatorShortInput" value="0" required="">
+                     <span class="additional">cm</span>
+                     <br class="clear">
+                     </div>
+
+                	 <div class="single-field">
+                     <label for="weight">Weight <small>&nbsp;(e.g. 63)</small>:</label>
+                     <input type="number" step="any" min="0" name="weight" id="weight" class="calculatorShortInput" value="0" required="">
+                     <span class="additional">kg</span>
+                     <br class="clear">
+                     </div>
+
+                     <br>
+                     <b><span class="white">Select your activity level:</span></b>
+                     <br><br>
+
+                     <input type="radio" value="1.2" name="activityLevel"> <span class="white">I am sedentary (little or no exercise)</span><br>
+                     <input type="radio" value="1.375" name="activityLevel"> <span class="white">I am lightly active (light exercise or sports 1-3 days per week)</span><br>
+                     <input type="radio" value="1.55" name="activityLevel"> <span class="white">I am moderately active (moderate exercise or sports 3-5 days per week)</span><br>
+                     <input type="radio" value="1.725" name="activityLevel"> <span class="white">I am very active (hard exercise or sports 6-7 days per week)</span><br>
+                     <input type="radio" value="1.9" name="activityLevel"> <span class="white">I am super active (very hard exercise or sports and a physical job or 2x training)</span>
+
+                     <br style="clear:both;"><br>
+
+                     <label></label>
+                     <input type="submit" name="formsubmit1" value="Calculate BMR" class="calculatorButton">
+
+             </div>
+
+        </form>
+        <form method="post" name="bmr_calc2" id="bmrForm2" onsubmit="calculate_bmr('form2');return false">
+            <div id="form2" class="calculator_form bmr-calc2">
+            	<div class="single-field">
+                    <label for="gender2">Gender:</label>
+                    <select name="gender" id="gender2">
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                    </select>
+                </div>
+                <div class="single-field">
+                     <label for="bmrformula2">BMR Equation:</label>
+                     <select name="bmrformula" id="bmrformula2">
+                     	<option value="mifflin">Mifflin - St Jeor (default)</option>
+                     	<option value="harris">Harris-Benedict</option>
+                     </select>
+            	</div>
+                <div class="single-field">
+                    <label for="age2">Age:</label>
+                    <input type="number" step="any" min="0" name="age" id="age2" class="calculatorMedInput" required="">
+                </div>
+                <br style="clear:both;">
+                <label for="height" class="heading"><b>Your height</b></label>
+                <br style="clear:both;">
+                <div class="single-field multi-tile">
+                    <label for="feet">Feet:</label>
+                    <input type="number" step="any" min="0" name="feet" id="feet" class="calculatorShortInput" value="0">
+                </div>
+                <div class="single-field multi-tile">
+                    <label for="inches" class="tile">Inches:</label>
+                    <input type="number" step="any" min="0" name="inches" id="inches" class="calculatorShortInput" value="0">
+                </div>
+                <br style="clear:both;">
+                <label for="weight" class="heading"><b>Your weight</b></label>
+                <br style="clear:both;">
+                <div class="single-field multi-tile">
+                    <label for="stones">Stones:</label>
+                    <input type="number" step="any" min="0" name="stones" id="stones" class="calculatorShortInput" value="0">
+                </div>
+                <div class="single-field multi-tile">
+                    <label for="pounds" class="tile">Pounds:</label>
+                    <input type="number" step="any" min="0" name="pounds" id="pounds" class="calculatorShortInput" value="0">
+                </div>
+                <br style="clear:both;">
+                <b><span class="white">Select your activity level:</span></b>
+                <br><br>
+                <input type="radio" value="1.2" name="activityLevel"> <span class="white">I am sedentary (little or no exercise)</span><br>
+                <input type="radio" value="1.375" name="activityLevel"> <span class="white">I am lightly active (light exercise or sports 1-3 days per week)</span><br>
+                <input type="radio" value="1.55" name="activityLevel"> <span class="white">I am moderately active (moderate exercise or sports 3-5 days per week)</span><br>
+                <input type="radio" value="1.725" name="activityLevel"> <span class="white">I am very active (hard exercise or sports 6-7 days per week)</span><br>
+                <input type="radio" value="1.9" name="activityLevel"> <span class="white">I am super active (very hard exercise or sports and a physical job or 2x training)</span>
+                <br style="clear:both;"><br>
+                <input type="submit" name="formsubmit2" value="Calculate BMR" class="calculatorButton">
+            </div>
+        </form>
+        <div id="calcresults" class="calculator_results">
+            <h2 style="margin-top:0px;">BMR Calculation Result:</h2>
+            <div id="result_bmr"></div>
+
+        <script>
+
+        </script>
+            <hr>
+            <div class="amendLink orange"><a href='javascript:$.scrollTo("#scrollTop",800);'>&laquo; amend information</a></div>
+            <br style="clear:both;">
+        </div>
+    </article>
+</body>
+</html>

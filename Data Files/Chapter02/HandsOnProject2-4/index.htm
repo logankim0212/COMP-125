@@ -6,8 +6,8 @@
       Chapter 2
       Hands-on Project 2-4
 
-      Author: 
-      Date:   
+      Author: Logan Kim
+      Date:   Feb. 1, 2018
 
       Filename: index.htm
    -->
@@ -38,8 +38,35 @@
          <label for="item4">Grilled salmon ($13.00)</label>
          <input type="checkbox" id="item5" value="6" />
          <label for="item5">Side salad ($6.00)</label>
+         <input type="checkbox" id="item6" value="2" />
+         <label for="item6">McDouble ($2.00)</label>
+         <input type="checkbox" id="item7" value="10" />
+         <label for="item7">Big Mac ($10.00)</label>
          <input type="submit" id="submit" value="Submit" />
       </form>
    </article>
+    <script>
+        function calcTotal() {
+            var itemTotal = 0;
+            var item1 = document.getElementById("item1");
+            var item2 = document.getElementById("item2");
+            var item3 = document.getElementById("item3");
+            var item4 = document.getElementById("item4");
+            var item5 = document.getElementById("item5");
+            var item6 = document.getElementById("item6");
+            var item7 = document.getElementById("item7");
+            (item1.checked) ? (itemTotal += 8) : (itemTotal += 0);
+            (item2.checked) ? (itemTotal += 9) : (itemTotal += 0);
+            (item3.checked) ? (itemTotal += 8) : (itemTotal += 0);
+            (item4.checked) ? (itemTotal += 13) : (itemTotal += 0);
+            (item5.checked) ? (itemTotal += 6) : (itemTotal += 0);
+            (item6.checked) ? (itemTotal += 2) : (itemTotal += 0);
+            (item7.checked) ? (itemTotal += 10) : (itemTotal += 0);
+            var salesTaxRate = 0.13;
+            var orderTotal = itemTotal + (itemTotal * salesTaxRate);
+            alert("Your order total is $" + orderTotal);
+        }
+        document.getElementById("submit").addEventListener("click", calcTotal, false);
+    </script>
 </body>
 </html>
