@@ -141,8 +141,9 @@ h2 {
     color: #00ff00;
     font-size: 250%;
     font-family: Arial, sans-serif;
-    margin-left: 4.5%;
     margin-right: auto;
+    margin-right: auto;
+    text-align: center;
 }
 p {
     color: #ffffff;
@@ -164,7 +165,7 @@ input, select {
     color: white;
     border-radius: 0.3em;
 }
-label {
+label, #idGender {
     font-size: 100%;
     font-family: Arial, sans-serif;
     margin-bottom: 1em;
@@ -177,7 +178,7 @@ label {
 .activity1 {
     color: yellow;
 }
-#calculateButton {
+#calculateButtonM, #calculateButtonI {
     font-size: 100%;
     font-family: Arial, sans-serif;
     margin-bottom: 1em;
@@ -185,12 +186,11 @@ label {
     color: white;
     border-radius: 0.3em;
 }
-#calcButton {
+#calcButtonM, #calcButtonI {
     text-align: center;
 }
 input:hover {
     background-color: #884dff;
-}
 }
 p#backtotop {
     text-align: center;
