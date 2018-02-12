@@ -55,7 +55,7 @@ function CalculateMetric() {
         }
         alert('Your body will burn ' + total.toFixed(2) + ' calories each day. Based upon this, your daily calorie requirement would be ' + calories.toFixed(2) + ' calories.');
     } else {
-        alert("Fill and check all parts!")
+        alert("Enter and check all parts!")
     }
 }
 
