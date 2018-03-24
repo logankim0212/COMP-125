@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="assignment4.css">
+    <title>Assignment 4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Logan Kim">
+    <meta name="description" content="COMP125 Assignment 4">
+    <meta name="keywords" content="COMP 125, Centennial College, HTML5, CSS3, JavaScript, Assignment 4">
+    <meta charset="utf-8">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><a href="#">COMP <span class="highlight">125</span></a></h1>
+            </div>
+            <nav>
+                <div class="dropdown">
+                    <button onclick="dropdown()" class="dropbtn">Assignments</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="../Assignment01/assignment1.html">Assignment 1</a>
+                        <a href="../Assignment02/assignment2.html">Assignment 2</a>
+                        <a href="../Assignment03/photos.htm" class="actives">Assignment 3</a>
+                        <a href="#">Assignment 4</a>
+                        <a href="#">Assignment 5</a>
+                        <a href="#">Assignment 6</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <article>
+        <h2><strong>Member Registration</strong></h2>
+        <form method="post" id="Registration" name="Registration" onsubmit="return validateForm()">
+            <label for="FirstName">First Name:</label><br />
+            <input id="FirstName" type="text" name="FirstName" placeholder="Donald"><br />
+            <label for="LastName">Last Name:</label><br />
+            <input id="LastName" type="text" name="LastName" placeholder="Trump"><br />
+            <label for="Address">Address:</label><br />
+            <input id="Address" type="text" name="Address" placeholder="123 Yonge St."><br />
+            <label for="City">City:</label><br />
+            <input id="City" type="text" name="City" placeholder="Toronto"><br />
+            <label for="PostalCode">Postal Code:</label><br />
+            <input id="PostalCode" type="text" name="PostalCode" placeholder="X0X0X0"><br />
+            <label for="Province">Province:</label><br />
+            <select id="Province" name="Province">
+                <option value="Alberta">Alberta</option>
+                <option value="British Columbia">British Columbia</option>
+                <option value="Manitoba">Manitoba</option>
+                <option value="Ontario">Ontario</option>
+                <option value="Quebec">Quebec</option>
+                <option value="Saskatchewan">Saskatchewan</option>
+            </select><br />
+            <label for="Age">Age:</label><br />
+            <input id="Age" type="number" name="Age" placeholder="18"><br />
+            <label for="Password">Password:</label><br />
+            <input id="Password" type="password" name="Password"><br />
+            <label for="Confirm">Confirm:</label><br />
+            <input id="Confirm" type="password" name="confirm"><br />
+            <label for="Email">Email:</label><br />
+            <input id="Email" type="text" name="Email" placeholder="email@example.com"><br />
+            <input id="submit" type="submit" name="submit" value="Register Now">
+            <input id="reset" type="reset" name="clear" value="Clear Form">
+        </form>
+    </article>
+    <footer>
+        <p id="name">Logan Kim COMP125 Page, Copyright &copy; 2018</p>
+        <p id="backtotop"><a href = "#top"><mark>[ Back to Top ]</mark></a></p>
+    </footer>
+    <script src="assignment4.js"></script>
+</body>
+</html>

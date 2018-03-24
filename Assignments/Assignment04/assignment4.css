@@ -1,0 +1,260 @@
+body {
+    background-color: #666666;
+}
+/*navigation starts here*/
+.container {
+    width: 90%;
+    margin: auto;
+}
+/*header*/
+header {
+    background: #35424a;
+    color: #ffffff;
+    padding-top: 1.875em;
+    min-height: 4.375em;
+    border-bottom: #99ff66 .25em solid;
+}
+header ul {
+    margin: 0;
+    padding: 0;
+}
+header li {
+    float: left;
+    display: inline-block;
+}
+header a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1em;
+}
+header #branding {
+    float: left;
+}
+header #branding h1 {
+    margin: 0;
+}
+header nav {
+    float: right;
+    position: relative;
+}
+.highlight {
+    color: #99ff66;
+}/* Dropdown Button */
+.dropbtn {
+    background-color: #35424a;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.actives {
+    color: #99ff66;
+    font-weight: bold;
+}
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #99ff66;
+    color: black;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #35424a;
+}
+.dropdown-content a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    width: 8em;
+    height: 2.5em;
+    line-height: 2.5em;
+    text-align: center;
+    font-weight: bold;
+}
+.dropdown-content a:hover {
+    background-color: #99ff66;
+    color: black;
+}
+.show {display:block;}
+@media screen and (max-width: 600px){
+    header #branding, header nav {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: 100%;
+        display: inline-block;
+        position: relative;
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
+    h2, h3, p, input, select, img {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        width: 90%;
+    }
+}
+/* Mobile Accessiblity ends here*/
+
+/* bmr calculater dropdown */
+.accordion {
+    background-color: #000000;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin-top: 2em;
+}
+.active, .accordion:hover {
+    background-color: #99ff66;
+    color: #000000;
+}
+.panel {
+    padding: 0 18px;
+    background-color: #35424a;
+    display: none;
+    overflow: hidden;
+}
+.accordion:after {
+    content: '\02795';
+    font-size: 1em;
+    color: #35424a;
+    float: right;
+}
+.active:after {
+    content: "\2796";
+}
+/* bmr calculater dropdown ends here */
+h2 {
+    color: #00ff00;
+    font-size: 250%;
+    font-family: Arial, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+}
+h3 {
+    color: orange;
+    font-size: 200%;
+    font-family: Arial, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+}
+.heading {
+    text-align: center;
+}
+#canadaHead {
+    font-size: 4.5em;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+#provincesHead {
+    font-size: 2.5em;
+    margin-left: 3em;
+    margin-bottom: 0.5em;
+    margin-right: auto;
+}
+.canadaFlag {
+    margin-left: auto;
+    margin-right: auto;
+    height: 40%;
+    width: 40%;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+li {
+    color: #ffffff;
+    font-size: 1.5em;
+    margin-left: 3em;;
+    margin-bottom: 0.5em;
+}
+p {
+    color: #ffffff;
+    font-size: 150%;
+    font-family: Arial, sans-serif;
+    margin-right: auto;
+}
+
+#Registration label, #Registration input, #Registration select {
+    margin-left: 2em;
+}
+form {
+    color: #99ff66;
+    font-size: 150%;
+    font-family: Arial, sans-serif;
+    margin-right: auto;
+}
+input, select {
+    font-size: 100%;
+    font-family: Arial, sans-serif;
+    margin-bottom: 1em;
+    background-color: black;
+    color: white;
+    border-radius: 0.3em;
+    width: 14em;
+}
+#submit, #reset {
+    width: 7em;
+}
+label, #idGender {
+    font-size: 100%;
+    font-family: Arial, sans-serif;
+    margin-bottom: 1em;
+    border-radius: 0.3em;
+    margin-left: 7%;
+}
+.activity {
+    margin-left: 7%;
+}
+.activity1 {
+    color: yellow;
+}
+#calculateButtonM, #calculateButtonI {
+    font-size: 100%;
+    font-family: Arial, sans-serif;
+    margin-bottom: 1em;
+    background-color: black;
+    color: white;
+    border-radius: 0.3em;
+}
+#calcButtonM, #calcButtonI {
+    text-align: center;
+}
+input:hover {
+    background-color: #884dff;
+}
+p#backtotop {
+    text-align: center;
+    font-size: 125%;
+    margin-left: auto;
+    margin-right: auto;
+}
+p#name {
+    font-size: 125%;
+    margin-left: auto;
+    margin-right: auto;
+}
+footer {
+    background: #35424a;
+    color: #ffffff;
+    padding-top: 1em;
+    padding-bottom: 1.2em;
+    margin-top: 4em;
+    text-align: center;
+    border-top: #99ff66 .25em solid;
+}
