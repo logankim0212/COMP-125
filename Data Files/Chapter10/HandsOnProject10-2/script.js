@@ -1,6 +1,6 @@
 /*  JavaScript 6th Edition
     Chapter 10
-    Hands-on Project 10-1
+    Hands-on Project 10-2
 
     Author: 
     Date:   
@@ -16,9 +16,13 @@ function setUpPage() {
    var puzzlePieces = document.querySelectorAll("#pieces div");
    onTop = puzzlePieces.length + 1;
    for (var i = 0; i < puzzlePieces.length; i++) {
+      puzzlePieces[i].style.msTouchAction = "none";
+      puzzlePieces[i].style.touchAction = "none";
       if (puzzlePieces[i].addEventListener) {
          puzzlePieces[i].addEventListener("mousedown", startDrag, false);
          puzzlePieces[i].addEventListener("touchstart", startDrag, false);
+         puzzlePieces[i].addEventListener("mspointerdown", startDrag, false);
+         puzzlePieces[i].addEventListener("pointerdown", startDrag, false);
       } else if (puzzlePieces[i].attachEvent) {
          puzzlePieces[i].attachEvent("onmousedown", startDrag);
       }
@@ -30,8 +34,11 @@ function startDrag(event) {
    event.preventDefault();
    if (event.type !== "mousedown") {
       this.addEventListener("touchmove", moveDrag, false);
-
+      this.addEventListener("mspointermove", moveDrag, false);
+      this.addEventListener("pointermove", moveDrag, false);
       this.addEventListener("touchend", removeTouchListener, false);
+      this.addEventListener("mspointerup", removeTouchListener, false);
+      this.addEventListener("pointerup", removeTouchListener, false);
    } else {
       this.addEventListener("mousemove", moveDrag, false);
       this.addEventListener("mouseup", removeDragListener, false);
@@ -64,7 +71,11 @@ function removeDragListener() {
 }
 function removeTouchListener() {
    this.removeEventListener("touchmove", moveDrag, false);
+   this.removeEventListener("mspointermove", moveDrag, false);
+   this.removeEventListener("pointermove", moveDrag, false);
    this.removeEventListener("touchend", removeTouchListener, false);
+   this.removeEventListener("mspointerup", removeTouchListener, false);
+   this.removeEventListener("pointerup", removeTouchListener, false);
 }
 if (window.addEventListener) {
    window.addEventListener("load", setUpPage, false);

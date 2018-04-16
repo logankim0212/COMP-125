@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<!-- <meta charset="UTF-8"> -->
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<style type="text/css">
+	body {margin:0; padding:0; background: #000;}
+	canvas {display: block; margin: 0 auto; background: #fff;}
+</style>
+</head>
+
+<body>
+<canvas></canvas>
+<script>
+    // http://paulirish.com/2011/requestanimationframe-for-smart-animating
+	// shim layer with setTimeout fallback
+	window.requestAnimFrame = (function(){
+		return 	window.requestAnimationFrame         || 
+		          window.webkitRequestAnimationFrame || 
+		          window.mozRequestAnimationFrame    || 
+		          window.oRequestAnimationFrame      || 
+		          window.msRequestAnimationFrame     || 
+		          function( callback ){
+		            window.setTimeout(callback, 1000 / 60);
+		          };
+	})();
+	var game = {
+		//setting up initial values
+		width: 320,
+		height: 480,
+		ratio: null,
+		currentWidth: null,
+		currentHeight: null,
+		canvas: null,
+		ctx: null,
+		ua: null,
+		android: null,
+		ios: null,
+		scale: 1,
+		offset : {top: 0, left: 0},
+		entities: [],
+		nextBubble: 100,
+		score: { taps: 0, hit: 0, accuracy: 0, escaped:0}, //game statistics
+		init: function() {
+			// the ratio of width to height
+			game.ratio = game.width / game.height;
+			game.currentHeight = game.height;
+			game.currentWidth = game.width;
+			game.canvas = document.getElementsByTagName('canvas')[0];
+			//this is done prevent browser from defaulting back to 320 X 200
+			game.canvas.width = game.width;
+			game.canvas.height = game.height;
+			//this is to interact with the canvas api
+			game.ctx = game.canvas.getContext('2d');
+			game.ua = navigator.userAgent.toLowerCase();
+			//this sniffs out the user agent eg: ios or android
+			game.android = game.ua.indexOf('android') > -1 ? true : false;
+			game.ios = (game.ua.indexOf('iphone')>-1 || game.ua.indexOf('ipad')>-1) ? true : false;
+			
+			game.wave = {
+				x: -25,
+				y: -40,
+				r: 50,
+				time: 0,
+				offset: 0
+			};
+			
+			game.wave.total = Math.ceil(game.width / game.wave.r)+1;
+			//listening for clicks
+			window.addEventListener('click', function(e){
+				e.preventDefault();
+				game.Input.set(e);
+			}, false);
+			//listening for touches
+			window.addEventListener('touchstart',function(e){
+				e.preventDefault();
+				//the event object has an array named 'touches'. We just want the first touch(i.e. touches[0])
+				game.Input.set(e.touches[0]);
+			}, false);
+			window.addEventListener('touchmove',function(e){
+				//to prevent default scrolling/zooming behaviour
+				e.preventDefault();
+			}, false);
+			window.addEventListener('touchend',function(e){
+				e.preventDefault()
+			}, false);
+			game.resize();
+			game.loop();
+		},
+		resize: function(){
+			game.currentHeight = window.innerHeight;
+			game.currentWidth = game.currentHeight*game.ratio;
+			//this is to hide the address bar, by scrolling past it
+			if(game.android || game.ios){
+				document.body.style.height = (window.innerHeight + 50) + 'px';
+			}
+			game.canvas.style.width = game.currentWidth + 'px';
+			game.canvas.style.height = game.currentHeight + 'px';
+			game.scale = game.currentWidth / game.width;
+			game.offset.top = game.canvas.offsetTop;
+			game.offset.left = game.canvas.offsetLeft;
+			//a short timeout is used here b'cos certain browsers don't fire is there isn't a short delay
+			window.setTimeout(function () {
+				window.scrollTo(0,1);
+			},1);
+		},
+		//this is where all entities are checked for collision
+		update: function(){
+			var i;
+			var checkCollision = false;
+			game.nextBubble -= 1;
+			if(game.nextBubble < 0){
+				game.entities.push(new game.Bubble());
+				game.nextBubble = (Math.random()*100) + 100;
+			}
+			//create a new touch instance when the user taps the screen
+			if(game.Input.tapped){
+				game.score.taps += 1;
+				game.entities.push(new game.Touch(game.Input.x, game.Input.y));
+				//set tapped to false to avoid creating a new touch in the next cycle
+				game.Input.tapped = false;
+				checkCollision = true;
+			}
+			//cycle through all entities and update if neccesary
+			for(i=0;i<game.entities.length;i+=1){
+				game.entities[i].update();
+				if(game.entities[i].type === 'bubble' && checkCollision){
+					hit = game.collides(game.entities[i],{x: game.Input.x, y: game.Input.y, r: 7});	//as the second parameter, 3 variables are passed as 1
+					if(hit){
+						for(var n=0; n<5; n+=1){
+							game.entities.push(new game.Particle(game.entities[i].x, game.entities[i].y, 2, 'rgba(255,255,255,'+Math.random()*1+')'));
+						}
+						game.score.hit += 1;
+					}
+					
+					game.entities[i].remove = hit;
+				}
+				//delete from array if remove = true
+				if(game.entities[i].remove){
+					game.entities.splice(i,1);
+				}
+			}
+			game.wave.time = new Date().getTime()*0.002;
+			game.wave.offset = Math.sin(game.wave.time*0.8)*5;
+			game.score.accuracy = (game.score.hit / game.score.taps) * 100;
+			game.score.accuracy = isNaN(game.score.accuracy) ? 0 : ~~(game.score.accuracy) 			// to round floats
+			if(game.score.escaped>=10){
+				alert("GAME OVER!!");
+				document.location.reload();                
+			}
+		},
+		render: function(){
+			var i;
+			game.Draw.rect(0, 0, game.width, game.height, '#036');
+			
+			for ( i = 0; i < game.wave.total; i++) {
+				game.Draw.circle(
+					game.wave.x + game.wave.offset + (i*game.wave.r),
+					game.wave.y,
+					game.wave.r,
+					'#fff');
+			}
+			for(i=0; i<game.entities.length; i+=1){
+				game.entities[i].render();
+			}
+			game.Draw.text('Hit: '+game.score.hit, 20, 30, 12, '#fff');
+			game.Draw.text('Escaped: '+game.score.escaped, 20, 50, 12, '#fff');
+			game.Draw.text('Accuracy: '+game.score.accuracy+'%', 20, 70, 12, '#fff');
+		},
+		loop:function(){
+			requestAnimFrame(game.loop);
+			game.update();
+			game.render();
+		}
+	};
+	//drawing shapes 
+	game.Draw = {
+			clear: function () {
+				game.ctx.clearRect(0, 0, game.width, game.height);
+			},
+			rect: function(x, y, w, h, col){
+				game.ctx.fillStyle = col;
+				game.ctx.fillRect(x, y, w, h);
+			},
+			circle: function(x, y, r, col){
+				game.ctx.fillStyle = col;
+				game.ctx.beginPath();
+				game.ctx.arc(x+5, y+5, r, 0, Math.PI*2, true);
+				game.ctx.closePath();
+				game.ctx.fill();
+			},
+			text: function(string, x, y, size, col){
+				game.ctx.font = 'bold '+size+'px Monospace';
+				game.ctx.fillStyle = col;
+				game.ctx.fillText(string, x, y);
+			}
+		};
+		
+	game.Input = {
+		x: 0,
+		y: 0,
+		tapped: false,
+		set: function(data){
+			// var offsetTop = game.canvas.offsetTop,
+			// 		offsetLeft = game.canvas.offsetLeft;
+			// scale = game.currentWidth / game.width;
+			this.x = (data.pageX - game.offset.left)/game.scale;
+			this.y = (data.pageY - game.offset.top)/game.scale;
+			this.tapped = true;
+		}
+	};
+	game.Touch = function (x, y) {
+		this.type = 'touch';
+		this.x = x;
+		this.y = y;
+		this.r = 5;
+		this.opacity = 1;
+		this.fade = 0.08;
+		// this.remove = false;
+		this.update = function(){
+			this.opacity -= this.fade;
+			this.remove = (this.opacity <= 0)?true:false;
+		};
+		this.render = function(){
+			game.Draw.circle(this.x, this.y, this.r, 'rgba(0,0,255,1)');
+		};
+	};
+	game.Bubble = function(){
+		this.type = 'bubble';
+		this.r = (Math.random() * 2) + 10;			// bubble radius
+		this.speed = (Math.random() * 3) + 1;
+		this.move = 8 + this.r;		//oscillation of bubbles
+		this.x = ((Math.random() * game.width) - this.r );
+		this.xConstant = this.x;
+		this.y = game.height + (Math.random() * 100) + 100;		// +100 for making sure it starts off screen
+		this.remove = false;
+		this.update = function(){
+			var time = new Date().getTime() * 0.002;
+			this.y -= this.speed;
+			this.x = this.move * Math.sin(time) + this.xConstant;
+			if(this.y < -10){
+				game.score.escaped += 1; //update score
+				this.remove = true;
+			}
+		};
+		this.render = function(){
+			game.Draw.circle(this.x, this.y, this.r, 'rgba(255,255,255,1)');
+		};
+	};
+	//checking when the two circles overlap
+	game.collides = function(a, b){
+		var sq_dist = (((a.x - b.x) * (a.x - b.x)) + ((a.y - b.y) * (a.y - b.y)));
+		var sq_radii = (a.r + b.r) * (a.r + b.r);
+		if(sq_dist < sq_radii){
+			return true;
+		}	else {
+			return false;
+		}
+	};
+	game.Particle = function(x,y,r,col){
+		this.x = x;
+		this.y = y;
+		this.r = r;
+		this.col = col;
+		//determining the direction of particle explosion- 50%right  50%left
+		this.dir = (Math.random() > 0.49)?1:-1;
+		//to make particles travel at different speeds
+		this.vx = ~~(Math.random()*4)*this.dir;
+		this.vy = ~~(Math.random()*7);
+		this.remove = false;
+		this.update = function(){
+			this.x += this.vx;
+			this.y += this.vy;
+			this.vx *= 0.99;
+			this.vy *= 0.99;
+			this.vy -= 0.25;
+			if(this.y<0){
+				this.remove = true;
+			}
+		};
+		this.render = function(){
+			game.Draw.circle(this.x, this.y, this.r, this.col);
+		};
+	};
+	window.addEventListener('load',game.init,false);
+	window.addEventListener('resize',game.resize,false);
+	
+</script>
+</body>
+</html>

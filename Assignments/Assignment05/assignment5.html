@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="assignment5.css">
+    <script text="text/javascript" src="BugSmasher.js"></script>
+    <title>Assignment 5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Logan Kim">
+    <meta name="description" content="COMP125 Assignment 5">
+    <meta name="keywords" content="COMP 125, Centennial College, HTML5, CSS3, JavaScript, Assignment 5">
+    <meta charset="utf-8">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><a href="#">COMP <span class="highlight">125</span></a></h1>
+            </div>
+            <nav>
+                <div class="dropdown">
+                    <button onclick="dropdown()" class="dropbtn">Assignments</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="../Assignment01/assignment1.html">Assignment 1</a>
+                        <a href="../Assignment02/assignment2.html">Assignment 2</a>
+                        <a href="../Assignment03/photos.htm" class="actives">Assignment 3</a>
+                        <a href="../Assignment04/assignment4.html">Assignment 4</a>
+                        <a href="#">Assignment 5</a>
+                        <a href="#">Assignment 6</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <h2 id="bugTitle">
+        <strong>BugSmasher</strong>
+    </h2>
+    <div id="bugSmasher">
+        <div id="score">
+            Score: 0
+        </div>    
+        <div id="resetScore">
+            Reset Score
+        </div>
+        <div id="resetSpeed">
+            Reset Speed
+        </div>
+    </div>
+    <canvas id="canvas"></canvas>
+    <footer>
+        <p id="name">Logan Kim COMP125 Page, Copyright &copy; 2018</p>
+        <p id="backtotop"><a href = "#top"><mark>[ Back to Top ]</mark></a></p>
+    </footer>
+    <script text="text/javascript" src="assignment5.js"></script>
+</body>
+</html>
