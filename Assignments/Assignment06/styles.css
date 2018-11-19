@@ -1,0 +1,233 @@
+body {
+    background-color: #666666;
+}
+/*navigation starts here*/
+.container {
+    width: 90%;
+    margin: auto;
+}
+/*header*/
+header {
+    background: #35424a;
+    color: #ffffff;
+    padding-top: 1.875em;
+    min-height: 4.375em;
+    border-bottom: #99ff66 .25em solid;
+}
+header ul {
+    margin: 0;
+    padding: 0;
+}
+header li {
+    float: left;
+    display: inline-block;
+}
+header a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1em;
+}
+header #branding {
+    float: left;
+}
+header #branding h1 {
+    margin: 0;
+}
+header nav {
+    float: right;
+    position: relative;
+}
+.highlight {
+    color: #99ff66;
+}/* Dropdown Button */
+.dropbtn {
+    background-color: #35424a;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.actives {
+    color: #99ff66;
+    font-weight: bold;
+}
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #99ff66;
+    color: black;
+}
+.dropdown {
+    position: relative;
+    z-index: 50;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #35424a;
+}
+.dropdown-content a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+    width: 8em;
+    height: 2.5em;
+    line-height: 2.5em;
+    text-align: center;
+    font-weight: bold;
+}
+.dropdown-content a:hover {
+    background-color: #99ff66;
+    color: black;
+}
+.show {display:block;}
+#leftarrow, #rightarrow {
+   background: #000000;
+   color: white;
+   position: absolute;
+   z-index: 30;
+   text-align: center;
+   height: 135px;
+   width: 40px;
+   top: 85px;
+   border-radius: 5px;
+}
+article {
+    line-height: 1;
+    width: 960px;
+    margin: 0 auto;
+    font-family: verdana, arial, helvetica, sans-serif;
+    background: black;
+    position: relative;
+}
+article div:hover {
+   cursor: default;
+}
+
+a:hover {
+   text-decoration: none;
+   color: inherit;
+}
+
+h2 {
+    text-align: center;
+    font-size: 3em;
+    color: white;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#leftarrow {
+   left: 0;
+}
+
+#rightarrow {
+   right: 0;
+}
+
+#update {
+   display: block;
+   width: 100%;
+   position: absolute;
+   top: 290px;
+   color: white;
+   text-align: center;
+}
+
+#update p {
+   width: 20%;
+   margin: 0 auto;
+   line-height: 2em;
+   margin-top: 1em;
+   background: #000000;
+   border-radius: 5px;
+}
+
+#leftarrow p, #rightarrow p {
+   position: relative;
+   top: 50%;
+   margin-top: -0.5em;
+}
+
+figure {
+   position: absolute;
+   -webkit-box-shadow: 10px 0px 5px rgb(50, 50, 50),
+                       -10px 0px 5px rgb(50, 50, 50);
+   -moz-box-shadow:    10px 0px 5px rgb(50, 50, 50),
+                       -10px 0px 5px rgb(50, 50, 50);
+   box-shadow:         10px 0px 5px rgb(50, 50, 50),
+                       -10px 0px 5px rgb(50, 50, 50);
+}
+
+#fig2 {
+   z-index: 10;
+   left: 5%;
+   top: 34px;
+}
+
+#fig3 {
+   z-index: 20;
+   left: 50%;
+   margin-left: -240px;
+   top: 0;
+}
+
+#fig4 {
+   z-index: 10;
+   right: 5%;
+   top: 34px;
+}
+
+/* footer */
+p#backtotop {
+    text-align: center;
+    font-size: 125%;
+    margin-left: auto;
+    margin-right: auto;
+}
+p#name {
+    font-size: 125%;
+    margin-left: auto;
+    margin-right: auto;
+}
+footer {
+    background: #35424a;
+    color: #ffffff;
+    padding-top: 1em;
+    padding-bottom: 1.2em;
+    margin-top: 4em;
+    text-align: center;
+    border-top: #99ff66 .25em solid;
+}
+
+.favs {
+    color: white;
+    border-radius: 8px;
+    margin-top: 30em;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 960px;
+    text-align: center;
+}
+.favs .favsPara {
+    margin-top: .5em;
+    margin-bottom: .5em;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+.favs div {
+    display: inline-block;
+    border: 3px solid #000000;
+    border-radius: 8px;
+    overflow: hidden;
+    vertical-align: top;
+    text-align: center;
+    margin-left: .5em;
+    margin-right: .5em;
+    margin-bottom: 1em;
+}
+.favs button {
+    font-size: 1em;
+    border-radius: 5px;
+}

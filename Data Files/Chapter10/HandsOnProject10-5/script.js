@@ -35,6 +35,12 @@ function createMap(position) {
         } else if (city === "Rio de Janeiro") {
             Lat = "-22.9068";
             Lng = "-43.1729";
+        } else if (city === "Bogotá") {
+            Lat = "4.7110";
+            Lng = "-74.0721";
+        } else if (city === "Seoul") {
+            Lat = "37.5665";
+            Lng = "126.9780";
         }
         document.getElementById("caption").innerHTML = city;
     }

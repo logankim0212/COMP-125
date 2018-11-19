@@ -27,8 +27,8 @@ function mouseClick(e) {
 	  mouseY = Math.round(e.clientY - rect.top);
 	
 	// hit box
-	if ((mouseX > bugLocation.x && mouseX < bugLocation.x + bugAlive.width) && 
-	(mouseY > bugLocation.y && mouseY < bugLocation.y + bugAlive.height)) {
+	if ((mouseX > bugLocation.x - bugAlive.width / 2 && mouseX < bugLocation.x + bugAlive.width / 2) && 
+	(mouseY > bugLocation.y - bugAlive.height / 2 && mouseY < bugLocation.y + bugAlive.height / 2)) {
 		if (alive) {
 		killTheBug();
 		}
@@ -89,7 +89,7 @@ function setUp() {
 
 	// bug
 	bugAlive = new Image();
-	bugAlive.src = 'images/bug.png';
+	bugAlive.src = 'images/mosquito.png';
 
 	// dead bug
 	bugDead = new Image();

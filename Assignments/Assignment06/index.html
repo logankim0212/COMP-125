@@ -1,23 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <!--
-      JavaScript 6th Edition
-      Chapter 5
-      Chapter case
-
-      Photo gallery
-      Author:   Logan Kim
-      Date:     March 9, 2018
-
-      Filename: photos.htm
-   -->
-   <link rel = "stylesheet" type = "text/css" href = "photos.css">
-   <title>Assignment 3</title>
+   <link rel = "stylesheet" type = "text/css" href = "styles.css">
+   <title>Assignment 6</title>
    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
    <meta name = "author" content = "Logan Kim">
-   <meta name = "description" content = "COMP125 Assignment 3">
-   <meta name = "keywords" content = "COMP 125, Centennial College, HTML5, CSS3, JavaScript, Assignment 3">
+   <meta name = "description" content = "COMP125 Assignment 6">
+   <meta name = "keywords" content = "COMP 125, Centennial College, HTML5, CSS3, JavaScript, Assignment 6">
    <meta charset = "utf-8">
 </head>
 <body>
@@ -32,17 +21,17 @@
                     <div id="myDropdown" class="dropdown-content">
                         <a href="../Assignment01/assignment1.html">Assignment 1</a>
                         <a href="../Assignment02/assignment2.html">Assignment 2</a>
-                        <a href="#" class="actives">Assignment 3</a>
+                        <a href="../Assignment03/photos.htm">Assignment 3</a>
                         <a href="../Assignment04/assignment4.html">Assignment 4</a>
                         <a href="../Assignment05/assignment5.html">Assignment 5</a>
-                        <a href="../Assignment06/index.html">Assignment 6</a>
+                        <a href="#" class="actives">Assignment 6</a>
                     </div>
                 </div>
             </nav>
         </div>
     </header>
     <div>
-        <h2>Photo Gallery</h2>
+        <h2>Photo Gallery with jQeury</h2>
     </div>
     <div>
         <article>
@@ -62,18 +51,18 @@
             <div id="rightarrow">
                 <p>&gt;</p>
             </div>
-            <div id="fiveButton">
-                <p>Show more images</p>
+            <div id="update">
+                <p>Update</p>
             </div>
         </article>
     </div>
     <div class="favs" id="favs">
-        <p class="favsPara">Favorites</p>
     </div>
     <footer>
         <p id="name">Logan Kim COMP125 Page, Copyright &copy; 2018</p>
         <p id="backtotop"><a href = "#top"><mark>[ Back to Top ]</mark></a></p>
     </footer>
-    <script src="photos.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="myScript.js"></script>
 </body>
 </html>
